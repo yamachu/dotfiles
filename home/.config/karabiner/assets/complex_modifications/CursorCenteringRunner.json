@@ -1,0 +1,27 @@
+{
+  "title": "Launch osascript via keybindings  (ref: https://pqrs.org/osx/karabiner/complex_modifications/#launch_new_Chrome_or_iTerm2_windows)",
+  "rules": [
+    {
+      "description": "left control + left shift + ` (backtick) - launches osascript",
+      "manipulators": [
+        {
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript ~/Library/Scripts/CursorCentering.scpt"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}
