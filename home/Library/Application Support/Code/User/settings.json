@@ -1,0 +1,44 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "php.suggest.basic": false,
+    "[typescript]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[typescriptreact]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "files.trimTrailingWhitespace": true,
+    "window.zoomLevel": 0,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.historyExplorer.enabled": true,
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "tslint.autoFixOnSave": true,
+    "stylelint.enable": false,
+    "workbench.colorTheme": "Monokai",
+    "breadcrumbs.enabled": true,
+    "typescript.tsserver.log": "off",
+    "diffEditor.ignoreTrimWhitespace": true,
+    "azure.resourceFilter": [
+        "5e199e18-3779-4d11-9796-6eb0ab3ca815/138c1167-510e-4d07-93c6-8242910fc897"
+    ],
+    "files.associations": {
+        "*.csproj": "msbuild"
+    },
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true
+}
