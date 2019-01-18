@@ -1,0 +1,7 @@
+[ghq]
+        root = ~/Projects
+[user]
+        email = yamachu.dev@gmail.com
+        name = yamachu
+[core]
+        editor = code --wait
