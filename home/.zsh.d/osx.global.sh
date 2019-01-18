@@ -5,9 +5,6 @@ eval "$(anyenv init -)"
 # Java
 export JAVA_HOME=`/usr/libexec/java_home -v 10`
 
-# Rust
-export PATH="$HOME/.cargo/bin:${PATH}"
-
 # vcs_info使うぞ
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
@@ -72,7 +69,7 @@ alias jcurl='curl -H "Content-Type: application/json"'
 
 
 # added by travis gem
-[ -f /Users/yk-yamada/.travis/travis.sh ] && source /Users/yk-yamada/.travis/travis.sh
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
 # fastlane
 export PATH="$HOME/.fastlane/bin:$PATH"
@@ -115,3 +112,23 @@ function github-releases()
 }
 
 export PATH="$HOME/local/bin:$PATH"
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+
+function github-change-email()
+{
+    if [[ $# -lt 2 ]]; then
+        echo $0 "old_email" "new_email"
+        return 1
+    fi
+
+    git filter-branch -f --commit-filter '
+        if [ "$GIT_COMMITTER_EMAIL" = '$1' ];
+        then
+                GIT_COMMITTER_EMAIL='$2';
+                GIT_AUTHOR_EMAIL='$2';
+                git commit-tree "$@";
+        else
+                git commit-tree "$@";
+        fi' HEAD
+}
