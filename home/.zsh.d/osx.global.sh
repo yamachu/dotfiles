@@ -1,9 +1,11 @@
 # anyenv
+if [ -d $HOME/.anyenv ]; then
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+fi
 
 # Java
-export JAVA_HOME=`/usr/libexec/java_home -v 10`
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
 
 # vcs_info使うぞ
 autoload -Uz add-zsh-hook

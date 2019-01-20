@@ -53,8 +53,8 @@ alias ls="ls -G"
 # ========== Custom Env ======
 case ${OSTYPE} in
     darwin*)
-        source ${HOME}/.zsh.d/osx.global.sh
-        source ${HOME}/.zsh.d/osx.private.sh
+        [ -f .zsh.d/osx.global.sh ] && source ${HOME}/.zsh.d/osx.global.sh
+        [ -f .zsh.d/osx.private.sh ] && source ${HOME}/.zsh.d/osx.private.sh
         ;;
     linux*)
         source ${HOME}/.zsh.d/linux.global.sh
