@@ -1,0 +1,93 @@
+
+# tap repositories and their packages
+
+tap 'homebrew/core'
+brew 'awscli'
+brew 'azure-cli'
+brew 'carthage'
+brew 'cliclick'
+brew 'cocoapods'
+brew 'composer'
+brew 'coreutils'
+brew 'curl'
+brew 'findutils'
+brew 'flac'
+brew 'gdbm'
+brew 'gettext'
+brew 'ghq'
+brew 'git'
+brew 'gnu-sed'
+brew 'go'
+brew 'hub'
+brew 'jq'
+brew 'lame'
+brew 'less'
+brew 'lesspipe'
+brew 'libidn2'
+brew 'libogg'
+brew 'libpng'
+brew 'libsndfile'
+brew 'libunistring'
+brew 'libvorbis'
+brew 'mad'
+brew 'mas'
+brew 'mysql'
+brew 'ncurses'
+brew 'nkf'
+brew 'oniguruma'
+brew 'openssl'
+brew 'opus'
+brew 'opusfile'
+brew 'pcre'
+brew 'pcre2'
+brew 'peco'
+brew 'pkg-config'
+brew 'python'
+brew 'readline'
+# should install before sbt...
+cask 'java'
+brew 'sbt'
+brew 'scala'
+brew 'sox'
+brew 'sqlite'
+brew 'terraform'
+brew 'terraforming'
+brew 'thefuck'
+brew 'trash'
+brew 'travis'
+brew 'tree'
+brew 'wget'
+brew 'xz'
+brew 'zeromq'
+brew 'zsh'
+
+tap 'homebrew/bundle'
+
+tap 'homebrew/cask'
+cask 'gimp'
+cask 'google-chrome'
+cask 'google-japanese-ime'
+cask 'jad'
+cask 'mysqlworkbench'
+cask 'ngrok'
+
+tap 'azure/functions'
+brew 'azure-functions-core-tools'
+
+# tap 'rcmdnk/file'
+# brew 'brew-file'
+
+# Other Cask applications
+cask 'iterm2'
+# should install before sbt...
+# cask 'java'
+cask 'netron'
+cask 'visual-studio-code'
+
+# App Store applications
+mas 'GarageBand (10.3.2)', id: 682658836
+mas 'iMovie (10.1.10)', id: 408981434
+mas 'Keynote (8.3)', id: 409183694
+mas 'Numbers (5.3)', id: 409203825
+mas 'Pages (7.3)', id: 409201541
+mas 'Slack (3.3.7)', id: 803453959
