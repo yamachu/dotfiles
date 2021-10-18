@@ -1,3 +1,6 @@
+# https://minus9d.hatenablog.com/entry/2015/01/14/234726
+setopt interactivecomments
+
 # anyenv
 if [ -d $HOME/.anyenv ]; then
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -5,6 +8,7 @@ eval "$(anyenv init -)"
 fi
 
 # Java
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export JAVA_HOME=`/usr/libexec/java_home -v 11`
 
 # vcs_info使うぞ
@@ -30,9 +34,9 @@ PROMPT='%(!.%F{magenta}.%F{cyan})# %~ %(!.#.$)%f ${vcs_info_msg_0_}
 # "
 
 # github関係
-alias g='cd $(ghq root)/$(ghq list | peco)'
-alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
-alias gcop='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git checkout'
+alias g='cd $(ghq root)/$(ghq list | grep -v -e "^src" -v -e "^pkg" -v -e "^\d"| peco)'
+alias ghopen='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+alias gcop='git branch -a --sort=-authordate | cut -b 3- | perl -pe '\''s#^remotes/origin/###'\'' | perl -nlE '\''say if !$c{$_}++'\'' | grep -v -- "->" | peco | xargs git switch'
 
 # peco使うやつ
 function peco-history-selection() {
@@ -45,7 +49,7 @@ zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
 # lesspipe
-export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s"
 
 # thefuck
 eval $(thefuck --alias)
@@ -62,11 +66,11 @@ alias aaaa="fuck"
 # 便利
 alias restart='exec $SHELL -l'
 alias fbrew="HOMEBREW_NO_AUTO_UPDATE=1 brew install"
-alias nbra='git checkout -b'
+alias nbra='git switch -c'
 alias mm='make'
 alias get-new-yarn='curl -o- -L https://yarnpkg.com/install.sh | bash'
 alias kirei_branch='git branch --merged|grep -v -E "\*|master"|xargs -n1 -I{} git branch -d {}'
-alias korosu_closed_branch='join -v 1 <(git branch |grep -v -E "\*|master"|sed -e "s:\s*::g") <(git branch -r |grep -v master|sed -e "s:\s*origin/::g")|xargs -n1 -I{} git branch -D {}'
+alias korosu_closed_branch='join -v 1 <(git branch |grep -v -E "\*|master"|sed -e "s:\S*::g") <(git branch -r |grep -v master|sed -e "s:\S*origin/::g")|xargs -n1 -I{} git branch -D {}'
 alias jcurl='curl -H "Content-Type: application/json"'
 
 
@@ -114,8 +118,6 @@ function github-releases()
 }
 
 export PATH="$HOME/local/bin:$PATH"
-export GOPATH=$HOME/go
-export PATH=$GOPATH/bin:$PATH
 
 function github-change-email()
 {
@@ -134,3 +136,34 @@ function github-change-email()
                 git commit-tree "$@";
         fi' HEAD
 }
+
+alias okite-touch-bar='pkill "Touch Bar agent"'
+
+function git-mv-name()
+{
+    if [[ $# -lt 2 ]]; then
+        echo $0 "old_path" "new_path"
+        return 1
+    fi
+
+    git mv $1 $1.tmp
+    git mv $1.tmp $2
+}
+
+# 最新のMakeが使いたいのでbrewで入れてalias張る
+alias make=$(which gmake 1> /dev/null; [ $? -eq 0 ] && which gmake || which make)
+alias ls='lsd'
+
+# Go
+export GOENV_DISABLE_GOPATH=1
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
+alias gghq='GHQ_ROOT=${GOPATH}/src ghq'
+alias gg='cd ${GOPATH}/$(ghq list| grep -E "^src"|peco)'
+
+export PATH=${HOME}/.local/bin:${PATH}
+export PATH=$PATH:${HOME}/.dotnet/tools
+
+alias grep="ggrep --color"
+
+export PATH=${PATH}:${HOME}/local

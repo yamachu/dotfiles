@@ -19,8 +19,12 @@ bindkey "^N" history-beginning-search-forward-end
 # ========== Completion ===========
 zstyle :compinstall filename '$HOME/.zshrc'
 
+if [ -e ~/.zsh.d/completion ]; then
+    fpath=(~/.zsh.d/completion $fpath)
+fi
+
 autoload -Uz compinit
-compinit
+compinit -i
 # http://journal.mycom.co.jp/column/zsh/009/index.html
 zstyle ':completion:*' list-colors ''  # color completion
 zstyle ':completion:*' format '%BCompleting %d%b'
@@ -44,17 +48,18 @@ WORDCHARS=${WORDCHARS:s,/,,} # "/" is not word char
 # ========== Alias ======
 alias grep='grep --color=auto'
 alias nkf='nkf -w'
-alias la="ls -AG"
-alias ll="ls -lGh"
-alias lla="ls -lGhA"
-alias l='ls -CFG'
-alias ls="ls -G"
+alias la="ls -A" # -G only normal ls
+alias ll="ls -lh" # -G only normal ls
+alias lla="ls -lhA" # -G only normal ls
+alias l='ls -F' # -G only normal ls, and -C
+alias ls="ls" # -G only normal ls
+
 
 # ========== Custom Env ======
 case ${OSTYPE} in
     darwin*)
-        [ -f .zsh.d/osx.global.sh ] && source ${HOME}/.zsh.d/osx.global.sh
-        [ -f .zsh.d/osx.private.sh ] && source ${HOME}/.zsh.d/osx.private.sh
+        [ -f ${HOME}/.zsh.d/osx.global.sh ] && source ${HOME}/.zsh.d/osx.global.sh
+        [ -f ${HOME}/.zsh.d/osx.private.sh ] && source ${HOME}/.zsh.d/osx.private.sh
         ;;
     linux*)
         source ${HOME}/.zsh.d/linux.global.sh
@@ -63,3 +68,6 @@ case ${OSTYPE} in
 esac
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# added by travis gem
+[ -f /Users/yamachu/.travis/travis.sh ] && source /Users/yamachu/.travis/travis.sh

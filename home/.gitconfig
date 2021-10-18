@@ -1,7 +1,16 @@
 [ghq]
         root = ~/Projects
+        #root = ~/go
 [user]
         email = yamachu.dev@gmail.com
         name = yamachu
 [core]
-        editor = code --wait
+        editor = code-insiders --wait
+		excludesfile = /Users/yamachu/.gitignore_global
+[filter "lfs"]
+	process = git-lfs filter-process --skip
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge --skip -- %f
+[init]
+	templatedir = /Users/yamachu/.git_template
